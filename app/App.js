@@ -11,32 +11,33 @@ import {
   Text,
   View
 } from 'react-native';
+import { SwitchNavigator, StackNavigator } from 'react-navigation'
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+import Home from './src/screens/Home';
+import Register from './src/screens/Register';
+import Login from './src/screens/Login';
 
-type Props = {};
 export default class App extends Component<Props> {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit App.js
-        </Text>
-        <Text style={styles.instructions}>
-          {instructions}
-        </Text>
-      </View>
+      <AuthStack />
     );
   }
 }
+
+const AuthStack = StackNavigator({
+  Register: {
+    screen: Register
+  },
+  Login: {
+    screen: Login
+  },
+  Home: {
+    screen: Home
+  }
+},{
+  initialRouteName: 'Login'
+})
 
 const styles = StyleSheet.create({
   container: {
